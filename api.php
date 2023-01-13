@@ -18,7 +18,7 @@ $parameter = array(
 "vendor" => $paytype,
 'currency' => 'CNY',
 'settleCurrency' => 'USD',
-"ipnUrl"	=> 'https://api.star-horizon.net/gateway/8994b91d-a7b82852f826/yuansfer/notify/'.TRADE_NO.'/',
+"ipnUrl"	=> $conf['localurl'].'pay/epay/notify/'.TRADE_NO.'/',
 "callbackUrl"	=> 'https://api.star-horizon.net/gateway/8994b91d-a7b82852f826/yuansfer/return/'.TRADE_NO.'/',
 'terminal' => DEVICE,
 'reference' => $trade_no,
@@ -29,7 +29,7 @@ $parameter = array(
 //建立请求
 $yuansferSubmit = new AlipaySubmit($alipay_config);
 $origin_url = $yuansferSubmit->get_cashierUrl($parameter);
-$Pay_url = 'https://api.star-horizon.net/api/cashier/yuansfer.php?cashierUrl='.base64_encode($origin_url);
+$Pay_url = $origin_url;
 
 /*//生成二维码链接（只能以USD货币收）
 $Qr_parameter = array(

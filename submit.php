@@ -43,8 +43,8 @@ $parameter = array(
 "vendor" => $paytype,
 'currency' => 'CNY',
 'settleCurrency' => 'USD',
-"ipnUrl"	=> 'https://api.star-horizon.net/gateway/8994b91d-a7b82852f826/yuansfer/notify/'.TRADE_NO.'/',
-"callbackUrl"	=> 'https://api.star-horizon.net/gateway/8994b91d-a7b82852f826/yuansfer/return/'.TRADE_NO.'/',
+"ipnUrl"	=> $conf['localurl'].'pay/epay/notify/'.TRADE_NO.'/',
+"callbackUrl"	=> $siteurl.'pay/epay/return/'.TRADE_NO.'/',
 'terminal' => $client,
 'reference' => $trade_no,
 'description' => $trade_no,
@@ -55,4 +55,4 @@ $parameter = array(
 $alipaySubmit = new AlipaySubmit($alipay_config);
 $html_text = $alipaySubmit->get_cashierUrl($parameter);
 $base64_url = base64_encode($html_text);
-header('Location: https://api.star-horizon.net/api/cashier/yuansfer.php?cashierUrl='.base64_encode($html_text));
+header('Location: '.$html_text);
